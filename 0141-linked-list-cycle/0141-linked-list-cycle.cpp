@@ -10,27 +10,15 @@ class Solution {
 public:
     bool hasCycle(ListNode *head) {
         typedef struct ListNode node;
-        node * slow = head;
-        node * fast = head;
-        
-        while(fast!=NULL){
-            fast = fast -> next;
-            
-            if(fast != NULL){
-              
-                fast = fast -> next;
-                slow = slow -> next;
-            
-            }
-            
-            if(fast == slow){
+        unordered_set <node*> us;
+        node * th = head;
+        while(th != NULL){
+            if(us.insert(th).second==false)
                 return true;
-            }
-            
+            th = th-> next;
         }
-        
-        return false;
-        
-        
+         return false;
+    
     }
+    
 };
