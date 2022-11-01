@@ -5,19 +5,22 @@
  *     struct ListNode *next;
  * };
  */
-struct ListNode* reverseList(struct ListNode* head){
+
+struct ListNode* reverseList(struct ListNode* head)
+{
     typedef struct ListNode Node;
-    
-        Node * curr = head;
-        Node * prev = NULL, * nextnode = NULL;
-        
-        while(curr != NULL){
-            nextnode = curr->next;
-            curr->next = prev;
-            prev = curr;
-            curr = nextnode;
+    Node * th = NULL;
+    Node* reverse(Node* prev, Node* curr)
+    {
+        if(curr) {
+            reverse(curr, curr -> next);
+            curr -> next = prev;   
         }
         
-        return prev;
-
+        if(curr==NULL) th = prev;
+        return th;
+    }
+    return reverse(NULL, head);
+    
 }
+
